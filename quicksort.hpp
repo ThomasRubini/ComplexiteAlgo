@@ -1,38 +1,34 @@
 #include <iostream>
+
 using namespace std;
 
-// Partition function
-int partition(int arr[], int low, int high)
-{
-    int pivot = arr[high];
-    int i = low - 1;
-    for (int j = low; j < high; j++)
-    {
-        if (arr[j] <= pivot)
-        {
+void quickSort_impl(int tab[], int left, int right) 
+{ 
+    int i = left, j = right;
+    int tmp;
+    int pivot = tab[(left + right) / 2];
+  
+    while (i <= j) {
+        while (tab[i] < pivot)
             i++;
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+        while (tab[j] > pivot)
+            j--;
+        if (i <= j) {
+            tmp = tab[i];
+            tab[i] = tab[j];
+            tab[j] = tmp;
+            i++;
+            j--;
         }
-    }
-    int temp = arr[i+1];
-    arr[i+1] = arr[high];
-    arr[high] = temp;
-    return i + 1;
+    };
+  
+    if (left < j)
+        quickSort_impl(tab, left, j);
+    if (i < right)
+        quickSort_impl(tab, i, right);
 }
 
-void quickSort_int(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        int pi = partition(arr, low, high);
-        quickSort_int(arr, low, pi - 1);
-        quickSort_int(arr, pi + 1, high);
-    }
-}
-
-void quickSort(int arr[], int size)
-{
-    quickSort_int(arr, 0, size);
-}
+void quickSort(int tab[], int size) 
+{ 
+    quickSort_impl(tab, 0, size - 1); 
+} 

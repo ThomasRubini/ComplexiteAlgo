@@ -14,3 +14,5 @@ L'algorithme s'arrête quand il fini une itération sans avoir besoin d'inverser
 
 # Tri rapide (quicksort)
 Le tri rapide est un algorithme récursif qui fonctionne sur la base de "Diviser pour mieux régner". Il sélectionne un pivot dans la liste, puis partitionne la liste de facon à ce que tout les éléments avant le pivot soient plus petits que lui, et que tout les éléments avant le pivot soient plus grands que lui. Cette opération est ensuite répétée sur les 2 sous-listes crées, jusqu'a obtenir des listes de taille 1.
+
+7) Done

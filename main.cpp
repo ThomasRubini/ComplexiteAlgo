@@ -63,11 +63,11 @@ void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> funct
 int main() 
 { 
     testAlgorithms({
-        {"bubbleSort", bubbleSort},
+        // {"bubbleSort", bubbleSort},
         {"mergeSort", mergeSort},
         {"quickSort", quickSort},
-        {"selectionSort", selectionSort},
-    }, {20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000}, "output.csv");
+        // {"selectionSort", selectionSort},
+    }, {100'000, 1'000'000, 2'000'000, 3'000'000, 5'000'000, 7'000'000, 10'000'000, 15'000'000}, "output.csv");
 
     return 0; 
 }

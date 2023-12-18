@@ -1,0 +1,1 @@
+Note: mettre le code des fonctions dans les fichiers .hpp n'est pas "juste faux". Ce n'est parfois pas recommandé (et parfois utilisé dans des vrais projets, e.g. nlohmann_json), mais pour autant cela marche, et me permet de simplifier la compilation pour ce projet simple

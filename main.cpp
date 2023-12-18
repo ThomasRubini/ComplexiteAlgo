@@ -1,3 +1,4 @@
+#include<fstream>
 #include<functional>
 #include<chrono>
 #include<vector>
@@ -30,9 +31,16 @@ double benchmark(std::function<void(int[], int)> fun, int tab[], int size, int t
     return totalTime / times;   
 }
 
-void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> functions, std::vector<int> sizes) {
+void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> functions, std::vector<int> sizes, std::string outputCsvFilename) {
+    std::ofstream csvFile(outputCsvFilename);
+
+    csvFile << "size| algorithm";
+    for(auto [key, _] : functions) csvFile << "," << key;
+    csvFile << std::endl;
+
     for(auto size : sizes) {
         std::cout << "Comparaison des algorithmes avec une taille de " << size << std::endl;
+        csvFile << size;
         
         int tab[size];
         fill_random(tab, size);
@@ -40,8 +48,11 @@ void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> funct
         for(auto &[key, fun] : functions) {
             double time = benchmark(fun, tab, size);
             std::cout << key << ": " << time << " seconds" << std::endl;
+            csvFile << "," << time;
         }
+
         std::cout << std::endl;
+        csvFile << std::endl;
     }
 }
 
@@ -52,7 +63,7 @@ int main()
         {"mergeSort", mergeSort},
         {"quickSort", quickSort},
         {"selectionSort", selectionSort},
-    }, {20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000});
+    }, {20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000}, "output.csv");
 
     return 0; 
 }

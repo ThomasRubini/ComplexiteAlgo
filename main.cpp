@@ -15,7 +15,7 @@ double benchmark(std::function<void(int[], int)> fun, int tab[], int size, int t
     double totalTime = 0;
     for(int i=0; i<times; i++) {
         // copy tab
-        int tabCopy[size];
+        int *tabCopy = new int[size];
         for(int j=0; j<size; j++) tabCopy[i] = tab[i];
 
         // execute function
@@ -26,6 +26,8 @@ double benchmark(std::function<void(int[], int)> fun, int tab[], int size, int t
         // get results
         std::chrono::duration<double> elapsed_seconds = end-start;
         totalTime += elapsed_seconds.count();
+
+        delete tabCopy;
     }
 
     return totalTime / times;   
@@ -42,7 +44,7 @@ void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> funct
         std::cout << "Comparaison des algorithmes avec une taille de " << size << std::endl;
         csvFile << size;
         
-        int tab[size];
+        int *tab = new int[size];
         fill_random(tab, size);
 
         for(auto &[key, fun] : functions) {
@@ -53,6 +55,8 @@ void testAlgorithms(std::map<std::string, std::function<void(int[], int)>> funct
 
         std::cout << std::endl;
         csvFile << std::endl;
+
+        delete tab;
     }
 }
 

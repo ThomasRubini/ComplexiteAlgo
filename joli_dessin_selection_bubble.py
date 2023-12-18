@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("output_selection_bubble.csv")
+df = pd.read_csv("python/output_selection_bubble.csv")
 data_x = df[df.columns[0]]
 for col in df.columns[1:]:
     # print()

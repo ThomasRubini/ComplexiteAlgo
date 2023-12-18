@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("output.csv")
+df = pd.read_csv("python/output.csv")
 data_x = df[df.columns[0]]
 for col in df.columns[1:]:
     plt.plot(data_x, df[col], label=df[col].name, linewidth=3)
@@ -18,7 +18,7 @@ plt.plot(x*FACTOR, x*np.log(x), label="O(nlog(n))")
 plt.plot(x*FACTOR, x, label="O(n)")
 plt.plot(x*FACTOR, x**2, label="O(n²)")
 
-plt.xlim(0, 7_000_000)
+plt.xlim(0, 500_000)
 plt.ylim(0, 5)
 
 plt.title('Sorting algorithm time complexity')
